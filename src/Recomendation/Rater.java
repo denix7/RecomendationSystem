@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Rater {
     private String myID;
-    private ArrayList<Rating> myRatings;
+    private ArrayList<Rating> myRatings = new ArrayList<Rating>();
 
     public Rater(String myID) {
         this.myID = myID;
@@ -46,5 +46,12 @@ public class Rater {
             res.add(current.toString());
         }
         return res;
+    }
+
+    public String toString()
+    {
+        return    "RaterID: " + myID
+                + " Ratings : " + myRatings.size()
+                + " MyRatings : " + myRatings + "\n";
     }
 }

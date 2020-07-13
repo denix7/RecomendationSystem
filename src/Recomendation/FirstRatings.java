@@ -133,4 +133,70 @@ public class FirstRatings {
 
         return directors;
     }
+
+    public ArrayList<Rater> loadRaters(String fileName)
+    {
+        String path = Paths.get("").toAbsolutePath().toString();
+        String route = "\\src\\data\\";
+        String actual = "";
+
+        ArrayList<Rater> res = new ArrayList<Rater>();
+        try {
+            BufferedReader csvReader = new BufferedReader(new FileReader(path + route + fileName));
+            String row;
+
+            while ((row = csvReader.readLine()) != null) {
+                String data[];
+                ArrayList<String> arr = new ArrayList<String>();
+
+                data = row.split(",");
+                String aux = "";
+
+                if (!data[0].equals("rater_id")) {
+                    String current = data[0];
+
+                    for (String s : data) {
+                        if(!arr.contains(s))
+                            arr.add(s);
+                    }
+                }
+                if (!arr.isEmpty()) {
+                    if(!actual.equals(arr.get(0)))
+                    {
+                        actual = arr.get(0);
+                        String raterId = arr.get(0);
+                        String item = arr.get(1);
+                        double value = Double.parseDouble(arr.get(2));
+
+                        Rater currentRater = new Rater(raterId);
+                        currentRater.addRating(item, value);
+
+                        res.add(currentRater);
+                    }
+                    else
+                    {
+                        String item = arr.get(1);
+                        double value = Double.parseDouble(arr.get(2));
+
+                        res.get(res.size() - 1).addRating(item, value);
+                    }
+
+                }
+            }
+            System.out.println(res);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return res;
+    }
+
+    public int maxRatingsByRater()
+    {
+        int res = 0;
+
+        return res;
+    }
 }
