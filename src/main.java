@@ -21,5 +21,7 @@ class main {
         //RATERS
         ArrayList<Rater> ratings = f.loadRaters("ratings.csv");
         System.out.println("There are " + ratings.size() + " Ratings");
+
+        f.findRatingsByRater("2");
     }
 }

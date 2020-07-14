@@ -193,10 +193,14 @@ public class FirstRatings {
         return res;
     }
 
-    public int maxRatingsByRater()
+    public void findRatingsByRater(String idRater)
     {
-        int res = 0;
+        ArrayList<Rater> raters = loadRaters("ratings.csv");
 
-        return res;
+        for(Rater current : raters)
+        {
+            if(current.getId().equals(idRater))
+                System.out.println("The rater : " + current.getId() + " has " +  current.numRatings());
+        }
     }
 }
