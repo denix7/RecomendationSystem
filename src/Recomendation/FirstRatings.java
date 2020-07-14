@@ -183,7 +183,7 @@ public class FirstRatings {
 
                 }
             }
-            System.out.println(res);
+            //System.out.println(res);
         }
         catch (IOException e)
         {
@@ -202,5 +202,42 @@ public class FirstRatings {
             if(current.getId().equals(idRater))
                 System.out.println("The rater : " + current.getId() + " has " +  current.numRatings());
         }
+    }
+
+    public void findMaxRatingsByRater()
+    {
+        ArrayList<Rater> raters = loadRaters("ratings.csv");
+        int maxRatingsByRater = 0;
+        String raterId = "";
+
+        for(Rater current : raters)
+        {
+            if(current.numRatings() > maxRatingsByRater){
+                maxRatingsByRater = current.numRatings();
+                raterId = current.getId();
+            }
+        }
+        System.out.println("The Rater " + raterId + " has the max ratings with " + maxRatingsByRater);
+    }
+
+    public void findRatingsInMovie(String movieId)
+    {
+        ArrayList<Rater> raters = loadRaters("ratings.csv");
+        int ratingsOfMovie = 0;
+
+        for(Rater current : raters)
+        {
+            ArrayList<Rating> ratings = current.getItemsRatedObj();
+
+            for(Rating r : ratings)
+            {
+                if(r.getItem().equals(movieId))
+                {
+                    ratingsOfMovie+=1;
+                }
+            }
+        }
+
+        System.out.println("The movie " + movieId + " has " + ratingsOfMovie + " ratings");
     }
 }

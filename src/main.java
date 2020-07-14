@@ -23,5 +23,7 @@ class main {
         System.out.println("There are " + ratings.size() + " Ratings");
 
         f.findRatingsByRater("2");
+        f.findMaxRatingsByRater();
+        f.findRatingsInMovie("1798709");
     }
 }

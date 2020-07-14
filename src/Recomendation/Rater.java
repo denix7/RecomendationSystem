@@ -48,6 +48,11 @@ public class Rater {
         return res;
     }
 
+    public ArrayList<Rating> getItemsRatedObj()
+    {
+        return myRatings;
+    }
+
     public String toString()
     {
         return    "RaterID: " + myID
